@@ -13,4 +13,14 @@ class UsuariosViewModel: ViewModel() {
    ))
     val uiState: StateFlow<PantallaEstado> = _uiState.asStateFlow()
 
+
+    fun agregarUsuario(nombre: String, legajo: String) {
+        val nuevoUsuario = Usuario(nombre, legajo)
+        ListadoUsuarios.listadoU.add(nuevoUsuario)
+
+    }
+
+    fun cambioNombre(nombre: String) {
+        _uiState.value = _uiState.value.copy(inputNombre = nombre)
+    }
 }

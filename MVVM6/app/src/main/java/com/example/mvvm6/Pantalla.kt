@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -52,7 +54,7 @@ fun PrincipalUi(usuariosViewModel: UsuariosViewModel = viewModel()) {
             ) {
                 TextField(
                    value = appEstado.inputNombre,
-                    onValueChange = {},
+                    onValueChange = {usuariosViewModel.cambioNombre(it)},
                     label = { Text("Nombre") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -70,7 +72,8 @@ fun PrincipalUi(usuariosViewModel: UsuariosViewModel = viewModel()) {
 
                 // Aquí está el botón perfectamente centrado
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {usuariosViewModel.agregarUsuario(appEstado.inputNombre, appEstado.inputLegajo)
+                    },
                     modifier = Modifier
                         .wrapContentWidth()           // o .width(IntrinsicSize.Max) si quieres que ocupe el ancho disponible
                 ) {
@@ -78,6 +81,22 @@ fun PrincipalUi(usuariosViewModel: UsuariosViewModel = viewModel()) {
                 }
 
             }
+        }
+        LazyColumn() {
+            items(appEstado.listaUsuarios) {
+                    UsuarioItem(usuario = it)
+
+            }
+        }
+    }
+}
+
+@Composable
+fun UsuarioItem(usuario: Usuario) {
+    Card(){
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = usuario.nombre)
+            Text(text = usuario.legajo)
         }
     }
 }
