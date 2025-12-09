@@ -52,6 +52,12 @@ fun PrincipalUi(usuariosViewModel: UsuariosViewModel = viewModel()) {
                     .padding(24.dp),          // padding interno de la tarjeta
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Text(
+                    text = "Registro de Usuarios: ${appEstado.contadorRegistros}",
+                    modifier = Modifier
+                        .wrapContentSize(Alignment.Center)
+
+                )
                 TextField(
                    value = appEstado.inputNombre,
                     onValueChange = {usuariosViewModel.cambioNombre(it)},
@@ -64,7 +70,7 @@ fun PrincipalUi(usuariosViewModel: UsuariosViewModel = viewModel()) {
                 TextField(
                     value = appEstado.inputLegajo,
                     label = { Text("Legajo") },
-                    onValueChange = {},
+                    onValueChange = {usuariosViewModel.cambioLegajo(it)},
                     modifier = Modifier.fillMaxWidth()
                 )
 
