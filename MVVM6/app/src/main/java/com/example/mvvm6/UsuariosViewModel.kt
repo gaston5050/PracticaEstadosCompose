@@ -23,4 +23,7 @@ class UsuariosViewModel: ViewModel() {
     fun cambioNombre(nombre: String) {
         _uiState.value = _uiState.value.copy(inputNombre = nombre)
     }
+    fun cambioLegajo(legajo: String) {
+        _uiState.value = _uiState.value.copy(inputLegajo = legajo)
+    }
 }

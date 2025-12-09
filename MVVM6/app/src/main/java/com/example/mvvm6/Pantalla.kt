@@ -64,7 +64,7 @@ fun PrincipalUi(usuariosViewModel: UsuariosViewModel = viewModel()) {
                 TextField(
                     value = appEstado.inputLegajo,
                     label = { Text("Legajo") },
-                    onValueChange = {},
+                    onValueChange = {usuariosViewModel.cambioLegajo(it)},
                     modifier = Modifier.fillMaxWidth()
                 )
 
